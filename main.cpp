@@ -1,32 +1,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include "utility.cpp" // used to output vectors
+#include "sorting.cpp"
 
 // How to run: g++ main.cpp -o main
 // ./main
-
-std::vector<int> string2Vector(std::string process){
-    std::vector<int> build;
-    std::string number = "";
-    for(int i = 0; i < process.size(); i++) {
-        if(process[i] == ' ' && number != "") {
-            build.push_back(stoi(number));
-            number = "";
-        }
-        else if(std::isdigit(process[i])) {
-            number += process[i];
-        }
-        else{
-            return {}; // invalid character included.
-        }
-    }
-    // read last input in case list of numbers does not end with a space
-    if(number != "") {
-        build.push_back(stoi(number));
-    }
-    return build;
-}
 
 int main(){
     std::string userInput = "";
@@ -44,47 +23,45 @@ int main(){
         std::cin >> userInput;
 
         if(userInput == "1") {
-            std::cout << "\nThe following list is provided as an example: " << std::endl;
-            std::cout << "{";
-            for(int i = 0; i < example.size(); i++) {
-                if(i == example.size()-1) {
-                    std::cout << example[i];
-                } 
-                else{
-                    std::cout << example[i] << ", ";
+            std::cout << "\nThe following list is provided as an example: ";
+            Utility::outputVector(example);
+
+            while(userInput != "b") {
+                std::cout << "\nYou have the following sorting algorithms to chose from: " << std::endl;
+                std::cout << "1. Bubble Sort" << std::endl;
+                std::cout << "2. Selection Sort" << std::endl;
+                std::cout << "3. Insertion Sort" << std::endl;
+                std::cout << "4. Merge Sort" << std::endl;
+                std::cout << "(back) To return to the main menu please enter \'b\'" << std::endl;
+                std::cout << "\nYour input: ";
+                std::cin >> userInput;
+
+                if(userInput == "1") {
+                    Sorting::bubbleSort(example);
                 }
             }
-            std::cout << "}" << std::endl;
+            
         }
         else if(userInput == "2") {
             std::cout << "\nEnter your series of numbers seperated by a space." << std::endl;
             std::cin.clear();
             std::cin.sync();
             std::getline(std::cin, userVector);
-            userExample = string2Vector(userVector);
+            userExample = Utility::string2Vector(userVector);
 
             if(userExample.empty()) {
                 std::cout << "No user input was recieved. :C" << std::endl;
             }
             else{
-                std::cout << "{";
-                for(int i = 0; i < userExample.size(); i++) {
-                    if(i == userExample.size()-1) {
-                        std::cout << userExample[i];
-                    } 
-                    else{
-                        std::cout << userExample[i] << ", ";
-                    }
-                }
-                std::cout << "}" << std::endl;
+               Utility::outputVector(userExample);
             }
         }
-        else {
+        else if(userInput != "x"){
             std::cout << "This is not a valid option, please try again." << std::endl;
             continue;
         }
+        else {
+            std::cout << "\nThank you for trying out my demo" << std::endl;
+        }
     }
-
-    std::cout << "\nThank you for trying out my demo" << std::endl;
-
 }
