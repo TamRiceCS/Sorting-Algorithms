@@ -39,22 +39,71 @@ int main(){
                 if(userInput == "1") {
                     Sorting::bubbleSort(example);
                 }
+
+                else if(userInput == "2") {
+                    Sorting::selectionSort(example);
+                }
+
+                else if(userInput == "3") {
+
+                }
+
+                else if(userInput == "4") {
+
+                }
+
+                else if(userInput != "b"){
+                    std::cout << "This does not appear to be a valid input, please try again." << std::endl;
+                }
             }
             
         }
         else if(userInput == "2") {
-            std::cout << "\nEnter your series of numbers seperated by a space." << std::endl;
-            std::cin.clear();
-            std::cin.sync();
-            std::getline(std::cin, userVector);
-            userExample = Utility::string2Vector(userVector);
+            while(userInput != "b") {
+                std::cout << "\nEnter your series of numbers seperated by a space or enter \'b\' to return to main menu" << std::endl;
+                std::cin.clear();
+                std::cin.sync();
+                std::getline(std::cin, userVector);
+                userExample = Utility::string2Vector(userVector);
 
-            if(userExample.empty()) {
-                std::cout << "No user input was recieved. :C" << std::endl;
+                if(userExample.empty() && userInput != "b") {
+                    std::cout << "No user input was recieved. :C" << std::endl;
+                }
+                else{
+                    Utility::outputVector(userExample);
+                }
+
+                while(!userExample.empty() && userInput != "b") {
+                    std::cout << "\nYou have the following sorting algorithms to chose from: " << std::endl;
+                    std::cout << "1. Bubble Sort" << std::endl;
+                    std::cout << "2. Selection Sort" << std::endl;
+                    std::cout << "3. Insertion Sort" << std::endl;
+                    std::cout << "4. Merge Sort" << std::endl;
+                    std::cout << "(back) To return to the main menu please enter \'b\'" << std::endl;
+                    std::cout << "\nYour input: ";
+                    std::cin >> userInput;
+                    if(userInput == "1") {
+                        Sorting::bubbleSort(userExample);
+                    }
+
+                    else if(userInput == "2") {
+                        Sorting::selectionSort(userExample);
+                    }
+
+                    else if(userInput == "3") {
+
+                    }
+
+                    else if(userInput == "4") {
+
+                    }
+
+                    else if(userInput != "b"){
+                        std::cout << "This does not appear to be a valid input, please try again." << std::endl;
+                    }
+                }
             }
-            else{
-               Utility::outputVector(userExample);
-            }
+            userExample.clear();
         }
         else if(userInput != "x"){
             std::cout << "This is not a valid option, please try again." << std::endl;
