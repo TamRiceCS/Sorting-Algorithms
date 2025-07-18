@@ -45,7 +45,7 @@ int main(){
                 }
 
                 else if(userInput == "3") {
-
+                    Sorting::insertionSort(example);
                 }
 
                 else if(userInput == "4") {
@@ -91,7 +91,7 @@ int main(){
                     }
 
                     else if(userInput == "3") {
-
+                        Sorting::insertionSort(userExample);
                     }
 
                     else if(userInput == "4") {
