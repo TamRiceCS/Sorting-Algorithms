@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "utility.cpp" // used to output vectors
+#include "utility.cpp"
 #include "sorting.cpp"
 
 // How to run: g++ main.cpp -o main
@@ -37,7 +37,7 @@ static void selectSort(std::vector<int> base) {
             std::cout << std::endl;
         }
         else if(userInput == "5") {
-
+            Sorting::quickSort(base, 0, base.size()-1, 0);
         }
 
         else if(userInput != "b"){
