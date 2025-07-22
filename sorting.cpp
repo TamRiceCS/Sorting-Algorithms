@@ -54,6 +54,67 @@ class Sorting {
             std::cout << "\nSort completed. Time = O(n^2) and Space = O(1)" << std::endl;
             std::cout << std::endl;
         }
-        static void mergeSort(std::vector<int> base){}
+        static void helperMerge(int s1, int s2, int e1, int e2, std::vector<int>& base) {
+
+            std::vector<int> left((e1-s1)+1, 0);
+            std::vector<int> right((e2-s2)+1, 0);
+
+            int lptr = 0;
+            int rptr = 0;
+
+            for(int i = s1; i <= e1; i++) {
+                left[lptr] = base[i];
+                lptr++;
+            }
+
+            for(int i = s2; i <= e2; i++) {
+                right[rptr] = base[i];
+                rptr++;
+
+            }
+
+            std::cout << "\nLeft split to merge: ";
+            Utility::outputVector(left);
+            std::cout << "Right split to merge: ";
+            Utility::outputVector(right);
+
+            lptr = 0;
+            rptr = 0;
+
+            for(int i = s1; i <= e2; i++) {
+                if(lptr >= left.size()) {
+                    std::cout << "Placed r1 " << right[rptr] << std::endl;
+                    base[i] = right[rptr++];
+                }
+                else if(rptr >= right.size()) {
+                    std::cout << "Placed l1 " << left[lptr] << std::endl;
+                    base[i] = left[lptr++];
+                }
+                else if(left[lptr] < right[rptr]) {
+                    std::cout << "Placed l2 " << left[lptr] << std::endl;
+                    base[i] = left[lptr++];
+                }
+                else{
+                    std::cout << "Placed r2 " << right[rptr] << std::endl;
+                    base[i] = right[rptr++];
+                    
+                }
+            }
+
+            std::cout << "Merge Complete: ";
+            Utility::outputVector(base);
+
+
+        }
+        static void mergeSort(std::vector<int>& base, int start, int end){
+            if(start >= end) {
+                return;
+            }
+
+            int middle = (start + end) / 2;
+            mergeSort(base, start, middle);
+            mergeSort(base, middle+1, end);
+            helperMerge(start, middle+1, middle, end, base);
+        }
         static void quickSort(std::vector<int> base){}
 };

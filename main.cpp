@@ -32,7 +32,9 @@ static void selectSort(std::vector<int> base) {
         }
 
         else if(userInput == "4") {
-
+            Sorting::mergeSort(base, 0, base.size()-1);
+            std::cout << "\nSort completed. Time = O(nlogn) and Space = O(n)" << std::endl;
+            std::cout << std::endl;
         }
         else if(userInput == "5") {
 
