@@ -115,34 +115,33 @@ namespace Sorting {
         mergeSort(base, middle+1, end);
         helperMerge(start, middle+1, middle, end, base);
     }
-    void quickSort(std::vector<int>& base, int start, int end, int count){
-        count++;
-        std::cout << "\nWorking range is from " << start << " to " << end << std::endl;
-        if(start >= end || count == 5) {
-            std::cout << "Finished" << std::endl;
+    void quickSort(std::vector<int>& base, int start, int end){
+        if(start >= end) {
             return;
         }
 
+        std::cout << "\nWorking range is from " << start << " to " << end << std::endl;
 
         int pivot = end;
         int swapPt = start; 
 
-        for(int i = 0; i < end; i++) {
+        for(int i = start; i < end; i++) {
             if(base[i] < base[pivot]) {
                 std::swap(base[i], base[swapPt]);
-                std::cout << "swap: ";
+                std::cout << "Swaped: " << base[i] << " and  " << base[swapPt] << ": ";
                 Utility::outputVector(base);
                 swapPt++;
             }
         }
 
         std::swap(base[end], base[swapPt]);
+        std::cout << "Swap the pivot to the correct position: ";
         Utility::outputVector(base);
 
        
 
-        quickSort(base, start, swapPt-1, count);
-        quickSort(base, swapPt, end, count);
+        quickSort(base, start, swapPt-1);
+        quickSort(base, swapPt, end);
 
 
     }

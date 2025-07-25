@@ -37,7 +37,8 @@ static void selectSort(std::vector<int> base) {
             std::cout << std::endl;
         }
         else if(userInput == "5") {
-            Sorting::quickSort(base, 0, base.size()-1, 0);
+            Sorting::quickSort(base, 0, base.size()-1);
+            std::cout << "\nSort completed. Time = O(nlogn) and Space = O(n)" << std::endl;
         }
 
         else if(userInput != "b"){
